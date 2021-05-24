@@ -2,15 +2,8 @@ provider "aws" {
   region = var.region-master
 }
 
-module "SG" {
-  source = "./modules/SG"
+module "Alarm" {
+  source = "./modules/Alarm"
 
-  sg-name = "${var.project[terraform.workspace]}-SG-${terraform.workspace}"
-  vpc-id  = module.VPC.vpc-id
-}
-
-module "VPC" {
-  source = "./modules/VPC"
-
-  vpc-name = "${var.project[terraform.workspace]}-VPC-${terraform.workspace}"
+  alarm_list = var.alarm_list
 }
